@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Events</title>
+    <link rel="stylesheet" href="{% static 'manage_events.css' %}">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="profile-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5-3YjBcXTqKUlOAeUUtuOLKgQSma2wGG1g&s" alt="">
+            <p>{{ request.user.username }}</p>
+        </div>
+        <h2 class="logo">Alumni Sync</h2>
+        <ul>
+            <li><a href="{% url 'alumni_portal' %}">Dashboard</a></li>
+            <li class="active"><a href="{% url 'manage_events' %}">Manage Events</a></li>
+            <li><a href="{% url 'view_events' %}">View Events</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+    <h1>Manage Events</h1>
+
+    <div class="table-wrapper">
+        <table class="event-table">
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for event in events %}
+            <tr>
+                <td>{{ event.title }}</td>
+                <td>{{ event.date }}</td>
+                <td>
+                    <a href="{% url 'edit_event' event.id %}" class="btn edit">Edit</a>
+                    <a href="{% url 'delete_event' event.id %}" class="btn delete"
+                       onclick="return confirm('Delete this event?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* ===== LOGIN PAGE ===== */
+
+.auth-body {
+    margin: 0;
+    height: 100vh;
+
+   background-image: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+}
+
+/* Dark overlay */
+.auth-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+/* Login box */
+.auth-container {
+    position: relative;
+    z-index: 1;
+
+    background: #ffffff;
+    padding: 35px;
+    width: 380px;
+    border-radius: 10px;
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+.auth-container h2 {
+    margin-bottom: 20px;
+    color: #1e3c72;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.auth-container input:focus {
+    outline: none;
+    border-color: #2a5298;
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+
+    background: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.auth-container button:hover {
+    background: #16325c;
+}
+
+.switch {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.switch a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch a:hover {
+    text-decoration: underline;
+}
+

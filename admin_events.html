@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Events</title>
+    <link rel="stylesheet" href="{% static 'admin_events.css' %}">
+</head>
+<body>
+
+<h2>Manage Alumni Events</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Created By</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for event in events %}
+    <tr>
+        <td>{{ event.title }}</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.created_by.username }}</td>
+        <td>
+            {% if event.is_approved %}
+                ✅ Approved
+            {% elif event.is_rejected %}
+                ❌ Rejected
+            {% else %}
+                ⏳ Pending
+            {% endif %}
+        </td>
+
+        <td>
+    <!-- APPROVE -->
+    <form method="POST" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="event_id" value="{{ event.id }}">
+        <input type="hidden" name="action" value="approve">
+        <button type="submit" class="approve-btn">Approve</button>
+    </form>
+
+    <!-- REJECT -->
+    <form method="POST" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="event_id" value="{{ event.id }}">
+        <input type="hidden" name="action" value="reject">
+        <button type="submit" class="reject-btn">Reject</button>
+    </form>
+
+    <!-- EDIT -->
+    <button class="edit-btn"
+        onclick="openEdit('{{ event.id }}','{{ event.title }}','{{ event.description }}','{{ event.date }}')">
+        Edit
+    </button>
+</td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- EDIT MODAL -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="event_id" id="event_id">
+
+            <input type="text" name="title" id="title" required>
+            <textarea name="description" id="description"></textarea>
+            <input type="date" name="date" id="date">
+
+            <button name="edit">Save Changes</button>
+            <button type="button" onclick="closeEdit()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function openEdit(id, title, desc, date) {
+    document.getElementById("editModal").style.display = "block";
+    document.getElementById("event_id").value = id;
+    document.getElementById("title").value = title;
+    document.getElementById("description").value = desc;
+    document.getElementById("date").value = date;
+}
+
+function closeEdit() {
+    document.getElementById("editModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

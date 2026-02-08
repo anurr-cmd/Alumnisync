@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <link rel="stylesheet" href="{% static 'view_events.css' %}">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- 🔹 SIDEBAR -->
+    <aside class="sidebar">
+        <div class="profile-section">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="profile-img">
+            <h3>Admin</h3>
+        </div>
+        <h2 class="logo">Alumni Sync</h2>
+        <ul>
+            <li><a href="{% url 'admin_portal' %}">Dashboard</a></li>
+            <li class="active"><a href="{% url 'view_events' %}">Events</a></li>
+            <li><a href="{% url 'view_jobs' %}">Jobs</a></li>
+            {% comment %} <li><a href="{% url 'view_announcements' %}">Announcements</a></li> {% endcomment %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- 🔹 MAIN CONTENT -->
+    <main class="content">
+        <h1>All Events</h1>
+
+        <div class="events-grid">
+            {% for event in events %}
+            <div class="event-card">
+                <img src="{{ event.image_url }}" alt="{{ event.title }}">
+                <div class="event-body">
+                    <h3>{{ event.title }}</h3>
+                    <p>{{ event.description|truncatewords:15 }}</p>
+                    <span>{{ event.date }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alumni Announcements</title>
+    <link rel="stylesheet" href="{% static 'admin.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="profile-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5-3YjBcXTqKUlOAeUUtuOLKgQSma2wGG1g&s" alt="user">
+            <h3>Alumni Panel</h3>
+        </div>
+
+        <a href="#">Dashboard</a>
+        <a href="#">Events</a>
+        <a class="active" href="#">Announcements</a>
+        <a href="#">Logout</a>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="navbar">
+            Announcements
+        </div>
+
+        <div class="content">
+
+            {% for ann in announcements %}
+            <div class="announcement-card">
+
+                <img src="{{ ann.image_url }}" class="announcement-img">
+
+                <div class="announcement-body">
+                    <h3>{{ ann.title }}</h3>
+
+                    <p class="date">
+                        Posted on {{ ann.posted_on }}
+                    </p>
+
+                    <p>{{ ann.message }}</p>
+                </div>
+
+            </div>
+            {% empty %}
+                <p>No announcements available.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
