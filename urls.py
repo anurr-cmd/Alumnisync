@@ -1,23 +1,38 @@
-"""
-URL configuration for Alumni_sync project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path,include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('Alumni_app/',include ('Alumni_app.urls')),
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('alumni-dashboard/', views.alumni_dashboard, name='alumni_dashboard'),
+    path("admin/alumni/", views.admin_view_alumni, name="admin_view_alumni"),
+    path("event/create/", views.create_event, name="create_event"),
+    path("admin-portal/", views.admin_portal, name="admin_portal"),
+    path("alumni-portal/", views.alumni_portal, name="alumni_portal"),
+    # path("admin/events/", views.admin_events, name="admin_events"),
+    # path("admin/events/approve/<int:id>/", views.approve_event, name="approve_event"),
+    # path("admin/events/reject/<int:id>/", views.reject_event, name="reject_event"),
+    path("admin/events/", views.manage_admin_events, name="admin_events"),
+    # path("admin/alumni/", views.view_alumni, name="view_alumni"),
+    path("admin/announcements/", views.admin_announcements, name="admin_announcements"),
+    path("admin/announcements/add/", views.add_announcement, name="add_announcement"),
+    path("admin/announcements/edit/<int:id>/", views.edit_announcement, name="edit_announcement"),
+    path("admin/announcements/delete/<int:id>/", views.delete_announcement, name="delete_announcement"),
+    path('announcements/', views.alumni_announcements, name='alumni_announcements'),
+    path("events/", views.view_events, name="view_events"),
+    path("events/manage/", views.manage_events, name="manage_events"),
+    path('events/edit/<int:id>/', views.edit_event, name='edit_event'),
+    path('events/delete/<int:id>/', views.delete_event, name='delete_event'),
+    # JOBS
+    path("jobs/", views.view_jobs, name="view_jobs"),
+    path("jobs/manage/", views.manage_jobs, name="manage_jobs"),
+    path("jobs/add/", views.add_job, name="add_job"),
+    path("jobs/edit/<int:id>/", views.edit_job, name="edit_job"),
+    path("jobs/delete/<int:id>/", views.delete_job, name="delete_job"),
+
 ]
