@@ -1,0 +1,42 @@
+
+table {
+    width: 90%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th {
+    background: #0f172a;
+    color: white;
+    padding: 14px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.add-btn {
+    background: #2563eb;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    float: right;
+}
+
+.edit-btn {
+    background: #fde68a;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.delete-btn {
+    background: #fecaca;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+

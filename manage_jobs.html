@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="{% static 'manage_jobs.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Job Management</h2>
+    <button onclick="openAddModal()" class="add-btn">Add Job</button>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for job in jobs %}
+    <tr>
+        <td>{{ job.title }}</td>
+        <td>{{ job.company }}</td>
+        <td>
+            <button onclick="openEditModal({job.id })" class="edit-btn">Edit</button>
+            <button onclick="openDeleteModal({job.id })" class="delete-btn">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<script>
+function openEditModal(id) {
+    alert("Edit job ID: " + id);
+}
+
+function openDeleteModal(id) {
+    alert("Delete job ID: " + id);
+}
+</script>
+
+
+</body>
+</html>
